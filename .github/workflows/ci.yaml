@@ -1,0 +1,38 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build_docker_images:
+    name: Build Docker Image To Dockerhub
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v3
+
+      - name: Extract Metadata
+        uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: |
+            ${{secrets.DOCKERHUB_USERNAME}}/${{secrets.DH_REPO_NAME}}
+          tags: |
+            type=semver,pattern={{version}}
+
+      - name: Docker Login
+        uses: docker/login-action@v2
+        with:
+          username: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_TOKEN}}
+          logout: true
+
+      - name: Build And Push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
