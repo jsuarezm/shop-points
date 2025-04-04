@@ -38,7 +38,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: '${{ env.TAG }}'
+          tags: ${{secrets.DOCKERHUB_USERNAME}}/${{secrets.DH_REPO_NAME}}:${{ env.TAG }}
 
       - name: Update k8s values with new image tag
         run: |
