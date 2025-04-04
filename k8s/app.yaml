@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: shop-points-app
-          image: jsuarezm/shop-points:20250404-013905
+          image: jsuarezm/shop-points:20250404-014958
           env:
             - name: DATABASE_URL
               valueFrom:
