@@ -5,9 +5,9 @@ metadata:
 spec:
   ports:
     - protocol: TCP
-      port: { { .Values.service.port } }
+      port: {{.Values.service.port}}
       targetPort: 3000
       nodePort: 30000
   selector:
     app: shop-points-app
-  type: { { .Values.service.type } }
+  type: {{.Values.service.type}}
