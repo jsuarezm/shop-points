@@ -1,0 +1,12 @@
+replicaCount: 2
+
+image:
+  repository: jsuarezm/shop-points
+  tag: 20250404-014958
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 80
+
+resources: {}

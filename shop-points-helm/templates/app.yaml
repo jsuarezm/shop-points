@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shop-points-app
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: shop-points-app
+  template:
+    metadata:
+      labels:
+        app: shop-points-app
+    spec:
+      containers:
+        - name: shop-points-app
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: shop-points-secret
+                  key: dburl
+            - name: RAILS_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: shop-points-env
+                  key: RAILS_ENV
+          ports:
+            - containerPort: 3000

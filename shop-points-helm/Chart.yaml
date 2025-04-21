@@ -1,0 +1,4 @@
+apiVersion: v2
+name: shop-points
+description: A Helm chart for Shop Points app
+version: 0.1.0

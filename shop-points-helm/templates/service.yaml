@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: shop-points-service
+spec:
+  ports:
+    - protocol: TCP
+      port: { { .Values.service.port } }
+      targetPort: 3000
+      nodePort: 30000
+  selector:
+    app: shop-points-app
+  type: { { .Values.service.type } }

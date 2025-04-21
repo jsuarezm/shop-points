@@ -44,10 +44,10 @@ jobs:
 
       - name: Update k8s values with new image tag
         run: |
-          sed -i "s/image: jsuarezm\/shop-points:.*/image: jsuarezm\/shop-points:${TAG}/" k8s/app.yaml
+          sed -i "s/tag: .*/tag: ${TAG}/" shop-points-helm/values.yaml
 
       - name: Commit and push updated values file
         uses: stefanzweifel/git-auto-commit-action@v5
         id: commit
         with:
-          commit_message: 'Update image tag to ${TAG}'
+          commit_message: 'Update image tag to ${{TAG}}'
