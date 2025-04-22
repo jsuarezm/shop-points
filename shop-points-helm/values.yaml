@@ -2,7 +2,7 @@ replicaCount: 2
 
 image:
   repository: jsuarezm/shop-points
-  tag: 20250421-190709
+  tag: 20250422-132420
   pullPolicy: IfNotPresent
 
 service:
