@@ -42,12 +42,12 @@ jobs:
           push: true
           tags: ${{secrets.DOCKERHUB_USERNAME}}/${{secrets.DH_REPO_NAME}}:${{ env.TAG }}
 
-      - name: Update k8s values with new image tag
-        run: |
-          sed -i "s/tag: .*/tag: ${TAG}/" shop-points-helm/values.yaml
+      # - name: Update k8s values with new image tag
+      #   run: |
+      #     sed -i "s/tag: .*/tag: ${TAG}/" shop-points-helm/values.yaml
 
-      - name: Commit and push updated values file
-        uses: stefanzweifel/git-auto-commit-action@v5
-        id: commit
-        with:
-          commit_message: "Update image tag to ${{ env.TAG }}"
+      # - name: Commit and push updated values file
+      #   uses: stefanzweifel/git-auto-commit-action@v5
+      #   id: commit
+      #   with:
+      #     commit_message: "Update image tag to ${{ env.TAG }}"
