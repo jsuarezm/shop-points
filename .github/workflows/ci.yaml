@@ -28,8 +28,7 @@ jobs:
           images: |
             ${{secrets.DOCKERHUB_USERNAME}}/${{secrets.DH_REPO_NAME}}
           tags: |
-            type=ref,event=branch
-            type=sha
+            latest
             type=sha, format=long
 
       - name: Docker Login
